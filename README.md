@@ -74,7 +74,7 @@ Os dados utilizados possuem 4250 observações. Estão disponíveis no Kaggle (C
 
 O método  `train_dt.describe().T` retorna algumas estatísticas descritivas a respeito das variáveis contínuas presentes em nossos dados.
 
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+![Untitled](Customer%20Churn%20Prediction%20c252cc84d52e4780b4ffa2116642caad/Untitled.png)
 
 **Inferências a partir da tabela:**
 
@@ -92,7 +92,7 @@ Irei investigar a proporção de ‘churn’ em cada grupo limitado pela uma das
 
 Quantidade de planos cancelados (churn = yes) em cada grupo de variável categórica.
 
-![Untitled](Customer%20Churn%20Prediction%20c252cc84d52e4780b4ffa2116642caad/Untitled.png)
+![Untitled](Customer%20Churn%20Prediction%20c252cc84d52e4780b4ffa2116642caad/Untitled%201.png)
 
 **→** Pela visualização dos gráficos podemos inferir:
 
@@ -102,15 +102,15 @@ Quantidade de planos cancelados (churn = yes) em cada grupo de variável categó
 
 **→ Churn por estados**
 
-![Untitled](Customer%20Churn%20Prediction%20c252cc84d52e4780b4ffa2116642caad/Untitled%201.png)
+![Untitled](Customer%20Churn%20Prediction%20c252cc84d52e4780b4ffa2116642caad/Untitled%202.png)
 
 → Utilizei a divisão proposta pela agência *Bureau of Economic Analysis* para agrupar os estados de acordo com os dados econômicos de cada estado:
 
-![Untitled](Customer%20Churn%20Prediction%20c252cc84d52e4780b4ffa2116642caad/Untitled%202.png)
+![Untitled](Customer%20Churn%20Prediction%20c252cc84d52e4780b4ffa2116642caad/Untitled%203.png)
 
 **→ Proporção total de churn**
 
-![Untitled](Customer%20Churn%20Prediction%20c252cc84d52e4780b4ffa2116642caad/Untitled%203.png)
+![Untitled](Customer%20Churn%20Prediction%20c252cc84d52e4780b4ffa2116642caad/Untitled%204.png)
 
 A proporção total de churn em nosso banco de dados é de 14,07%.
 
@@ -128,11 +128,11 @@ Como o que nos preocupa é o limite superior, ou seja, cenários onde o churn é
 
 Com a análise das estatísticas descritivas pudemos inferir a existência de outliers em nossos dados. Vamos investigar um pouco mais por meio dos gráficos boxplot.
 
-![Untitled](Customer%20Churn%20Prediction%20c252cc84d52e4780b4ffa2116642caad/Untitled%204.png)
+![Untitled](Customer%20Churn%20Prediction%20c252cc84d52e4780b4ffa2116642caad/Untitled%205.png)
 
 Já conseguimos observar a presença de pontos além do terceiro quartil. Porém, devido os atributos possuirem escalas diferentes a análise pode ser comprometida. Irei então, padronizar os dados (em função da média e desvio padrão de cada coluna). 
 
-![Untitled](Customer%20Churn%20Prediction%20c252cc84d52e4780b4ffa2116642caad/Untitled%205.png)
+![Untitled](Customer%20Churn%20Prediction%20c252cc84d52e4780b4ffa2116642caad/Untitled%206.png)
 
 `Index(['account_length', 'number_vmail_messages', 'total_day_minutes','total_day_calls', 'total_day_charge', 'total_eve_minutes','total_eve_calls', 'total_eve_charge', 'total_night_minutes','total_night_calls', 'total_night_charge', 'total_intl_minutes','total_intl_calls', 'total_intl_charge','number_customer_service_calls'],dtype='object')`
 
@@ -140,17 +140,17 @@ Conforme esperado, pudemos verificar a existência de observações consideravel
 
 → Assumiremos que os valores que encontrarem-se acima  do terceiro quartil ou abaixo do primeiro quartil em 1,5 vezes o desvio padrão são outliers e serão removidos. 
 
-![Untitled](Customer%20Churn%20Prediction%20c252cc84d52e4780b4ffa2116642caad/Untitled%206.png)
+![Untitled](Customer%20Churn%20Prediction%20c252cc84d52e4780b4ffa2116642caad/Untitled%207.png)
 
 ### → Análise de Correlações
 
 Segue mapa de calor das correlações entre as variáveis, podemos ver a existência de uma correlação muito forte entre minutos e cobranças.
 
-![Untitled](Customer%20Churn%20Prediction%20c252cc84d52e4780b4ffa2116642caad/Untitled%207.png)
+![Untitled](Customer%20Churn%20Prediction%20c252cc84d52e4780b4ffa2116642caad/Untitled%208.png)
 
 **→ Scatterplot** gráfico de dispersão entre variáveis com forte correlação.
 
-![Untitled](Customer%20Churn%20Prediction%20c252cc84d52e4780b4ffa2116642caad/Untitled%208.png)
+![Untitled](Customer%20Churn%20Prediction%20c252cc84d52e4780b4ffa2116642caad/Untitled%209.png)
 
 ## → Verificação de Hipóteses
 
@@ -190,7 +190,7 @@ Transformaremos as variáveis categóricas em numéricas. Os outliers serão rem
 
 Criei novas variáveis para os valores totais de minutos e cobranças (total_minutes e total_charge). Temos uma correlação moderada entre essas novas variáveis e a variável alvo! Abaixo temos uma régua de valores absolutos de correlação.
 
-![Untitled](Customer%20Churn%20Prediction%20c252cc84d52e4780b4ffa2116642caad/Untitled%209.png)
+![Untitled](Customer%20Churn%20Prediction%20c252cc84d52e4780b4ffa2116642caad/Untitled%2010.png)
 
 Reduzirei a quantidade de variáveis, mantendo apenas as correlações mais relevantes.
 
@@ -213,7 +213,7 @@ Reduzirei a quantidade de variáveis, mantendo apenas as correlações mais rele
 y_pred = X_train.iloc[:,2]
 ```
 
-![Untitled](Customer%20Churn%20Prediction%20c252cc84d52e4780b4ffa2116642caad/Untitled%2010.png)
+![Untitled](Customer%20Churn%20Prediction%20c252cc84d52e4780b4ffa2116642caad/Untitled%2011.png)
 
 ## Modelo 1: Regressão Logística
 
@@ -231,9 +231,9 @@ O primeiro modelo a ser testado para realizar a previsão de churn é a Regress�
 
 **Matriz de Confusão - Churn**
 
-![Untitled](Customer%20Churn%20Prediction%20c252cc84d52e4780b4ffa2116642caad/Untitled%2011.png)
-
 ![Untitled](Customer%20Churn%20Prediction%20c252cc84d52e4780b4ffa2116642caad/Untitled%2012.png)
+
+![Untitled](Customer%20Churn%20Prediction%20c252cc84d52e4780b4ffa2116642caad/Untitled%2013.png)
 
 ---
 
@@ -253,9 +253,9 @@ Neste modelo, KNN, conseguimos melhorar um pouco nossas previsões.
 
 **Matriz de Confusão - Churn**
 
-![Untitled](Customer%20Churn%20Prediction%20c252cc84d52e4780b4ffa2116642caad/Untitled%2013.png)
-
 ![Untitled](Customer%20Churn%20Prediction%20c252cc84d52e4780b4ffa2116642caad/Untitled%2014.png)
+
+![Untitled](Customer%20Churn%20Prediction%20c252cc84d52e4780b4ffa2116642caad/Untitled%2015.png)
 
 ---
 
@@ -275,10 +275,22 @@ O terceiro modelo utilizado foi o Random Forest. Com excelentes resultados.
 
 **Matriz de Confusão - Churn**
 
-![Untitled](Customer%20Churn%20Prediction%20c252cc84d52e4780b4ffa2116642caad/Untitled%2015.png)
-
 ![Untitled](Customer%20Churn%20Prediction%20c252cc84d52e4780b4ffa2116642caad/Untitled%2016.png)
+
+![Untitled](Customer%20Churn%20Prediction%20c252cc84d52e4780b4ffa2116642caad/Untitled%2017.png)
 
 ---
 
-# → Conclusões# Churn_Prediction
+# → Conclusões
+
+Por meio da análise exploratória dos dados disponíveis foi possível observar que:
+
+1. Os cliente assinantes do plano internacional têm uma maior tendência ao cancelamento, chegando a 42% dos clientes observados.
+2. Os clientes assinantes do plano de caixa postal tem uma menor propensão ao cancelamento, chegando a apenas 7% de cancelamentos observados.
+3. Alguns estados possuem uma maior proporção de cancelamentos, em destaque (NJ, CA, WA,MD, MT, OK, NV) que apresentaram mais de 20% de cancelamentos observados.
+
+Com base nesses dados, recomendo seu uso para direcionamento do programa de retenção de clientes.
+
+→ Sabendo que aproximadamente 30% dos cancelamentos são oriundos de clientes do plano internacional, sugiro uma avaliação do produto a fim de melhorar a satisfação do cliente e consequentemente reduzir a taxa de churn.
+
+→ A utilização do modelo (Modelo 3) de predição pode direcionar campanhas de descontos ou adesão do plano de caixa postal de forma mais objetiva para os clientes com maior potencial de cancelamento.
